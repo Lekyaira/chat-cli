@@ -11,6 +11,7 @@
 - `tests/message_format_tests.rs` - Unit tests for message structure.
 - `.github/workflows/ci.yml` - GitHub Actions config for `cargo test` and `clippy`.
 - `tasks/tasks-prd-local-chat-cli.md` - Task list for implementing the PRD.
+- `README.md` - Project overview and usage instructions.
 
 ### Notes
 
@@ -46,4 +47,4 @@
   - [ ] 8.1 Unit tests for transcript load/save and message formatting
 - [ ] 9.0 Continuous integration and documentation
   - [ ] 9.1 Configure GitHub Actions to run `cargo test` and `clippy`
-  - [ ] 9.2 Provide usage instructions and architecture overview in README
+  - [x] 9.2 Provide usage instructions and architecture overview in README
