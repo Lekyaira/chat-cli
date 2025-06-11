@@ -33,7 +33,7 @@
   - [x] 4.2 Maintain `Vec<Message>` with `role` and `content`
   - [x] 4.3 Stream responses as tokens arrive
 - [ ] 5.0 Support conversation persistence
-  - [ ] 5.1 Autoload default transcript on startup
+  - [x] 5.1 Autoload default transcript on startup
   - [ ] 5.2 Autosave conversation after each turn
   - [ ] 5.3 Implement `--new` and update `last` symlink
   - [ ] 5.4 Implement `--load` to continue from existing file

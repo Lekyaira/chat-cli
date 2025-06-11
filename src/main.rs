@@ -1,11 +1,13 @@
 mod cli;
 mod chat_backend;
 mod ollama_backend;
+mod transcript;
 
 use clap::Parser;
 use std::io::{self, Write};
 use chat_backend::{ChatBackend, Message};
 use ollama_backend::OllamaBackend;
+use transcript::{default_transcript_path, load_transcript};
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
@@ -14,6 +16,20 @@ async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
     // Initialize the chat backend using the requested model
     let backend = OllamaBackend::new(cli.model.clone());
     let mut messages: Vec<Message> = Vec::new();
+
+    if cli.new.is_none() && cli.load.is_none() {
+        if let Some(path) = default_transcript_path() {
+            if path.exists() {
+                match load_transcript(&path) {
+                    Ok(msgs) => {
+                        println!("Loaded conversation from {:?}", path);
+                        messages = msgs;
+                    }
+                    Err(e) => eprintln!("Failed to load transcript {:?}: {}", path, e),
+                }
+            }
+        }
+    }
 
     if let Some(path) = cli.new.as_ref() {
         println!("Starting new conversation at {:?}", path);
