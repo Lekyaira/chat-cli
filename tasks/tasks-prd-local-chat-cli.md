@@ -21,7 +21,7 @@
   - [x] 1.1 Create `Cargo.toml` with necessary dependencies
   - [x] 1.2 Set up `src/main.rs` with async runtime entry point
 - [ ] 2.0 Implement CLI argument parsing
-  - [ ] 2.1 Define flags `--new`, `--load`, and `--model` in `src/cli.rs`
+  - [x] 2.1 Define flags `--new`, `--load`, and `--model` in `src/cli.rs`
   - [ ] 2.2 Hook CLI parsing into `main.rs`
 - [ ] 3.0 Build chat backend abstraction
   - [ ] 3.1 Define `ChatBackend` trait in `chat_backend.rs`
