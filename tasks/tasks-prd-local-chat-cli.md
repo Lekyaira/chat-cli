@@ -10,6 +10,7 @@
 - `tests/transcript_tests.rs` - Unit tests for transcript load/save.
 - `tests/message_format_tests.rs` - Unit tests for message structure.
 - `.github/workflows/ci.yml` - GitHub Actions config for `cargo test` and `clippy`.
+- `tasks/tasks-prd-local-chat-cli.md` - Task list for implementing the PRD.
 
 ### Notes
 
@@ -20,9 +21,9 @@
 - [x] 1.0 Initialize Rust project structure
   - [x] 1.1 Create `Cargo.toml` with necessary dependencies
   - [x] 1.2 Set up `src/main.rs` with async runtime entry point
-- [ ] 2.0 Implement CLI argument parsing
+- [x] 2.0 Implement CLI argument parsing
   - [x] 2.1 Define flags `--new`, `--load`, and `--model` in `src/cli.rs`
-  - [ ] 2.2 Hook CLI parsing into `main.rs`
+  - [x] 2.2 Hook CLI parsing into `main.rs`
 - [ ] 3.0 Build chat backend abstraction
   - [ ] 3.1 Define `ChatBackend` trait in `chat_backend.rs`
   - [ ] 3.2 Implement `OllamaBackend` using `async-openai`
