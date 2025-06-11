@@ -4,7 +4,10 @@ Chat CLI is a Rust command-line tool for interacting with a local large language
 
 ## Status
 
-The project is in early development. The CLI accepts a few arguments and now defines a simple backend abstraction via a `ChatBackend` trait (see `src/chat_backend.rs`):
+The project is in early development. The CLI accepts a few arguments and defines
+a simple backend abstraction via a `ChatBackend` trait (see
+`src/chat_backend.rs`). A first implementation using `async-openai` is provided
+in `src/ollama_backend.rs`:
 
 - `--new <FILE>` start a new conversation log.
 - `--load <FILE>` load an existing log.

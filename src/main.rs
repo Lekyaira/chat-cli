@@ -1,4 +1,6 @@
 mod cli;
+mod chat_backend;
+mod ollama_backend;
 
 use clap::Parser;
 
