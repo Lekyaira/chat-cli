@@ -1,11 +1,15 @@
 use crate::chat_backend::{ChatBackend, Message};
-use async_openai::{Client, config::OpenAIConfig, types::{
-    ChatCompletionRequestAssistantMessageArgs,
-    ChatCompletionRequestMessage,
-    ChatCompletionRequestSystemMessageArgs,
-    ChatCompletionRequestUserMessageArgs,
-    CreateChatCompletionRequestArgs,
-}};
+use async_openai::{
+    config::OpenAIConfig,
+    types::{
+        ChatCompletionRequestAssistantMessageArgs, ChatCompletionRequestMessage,
+        ChatCompletionRequestSystemMessageArgs, ChatCompletionRequestUserMessageArgs,
+        CreateChatCompletionRequestArgs,
+    },
+    Client,
+};
+use futures_util::StreamExt;
+use std::io::{self, Write};
 use async_trait::async_trait;
 
 /// Chat backend that talks to a locally running Ollama server via OpenAI-compatible API.
@@ -53,14 +57,24 @@ impl ChatBackend for OllamaBackend {
         let request = CreateChatCompletionRequestArgs::default()
             .model(self.model.clone())
             .messages(req_messages)
+            .stream(true)
             .build()?;
 
-        let response = self.client.chat().create(request).await?;
-        let reply = response
-            .choices
-            .first()
-            .and_then(|c| c.message.content.clone())
-            .unwrap_or_default();
+        let mut stream = self.client.chat().create_stream(request).await?;
+        let mut reply = String::new();
+        while let Some(chunk) = stream.next().await {
+            let chunk = chunk?;
+            if let Some(content) = chunk
+                .choices
+                .first()
+                .and_then(|c| c.delta.content.clone())
+            {
+                print!("{}", content);
+                io::stdout().flush()?;
+                reply.push_str(&content);
+            }
+        }
+        println!();
         Ok(reply)
     }
 }

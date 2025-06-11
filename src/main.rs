@@ -41,7 +41,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
         }
         messages.push(Message { role: "user".into(), content: line.to_string() });
         let reply = backend.chat(&messages).await?;
-        println!("{}", reply);
         messages.push(Message { role: "assistant".into(), content: reply });
     }
 
