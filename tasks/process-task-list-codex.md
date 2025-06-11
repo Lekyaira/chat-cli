@@ -4,6 +4,7 @@ Guidelines for managing task lists in markdown files to track progress on comple
 
 ## Task Implementation
 
+- **Sub-tasks, not patent tasks:** When asked to complete the next task, you are meant to complete the next sub-task, not parent task. Parent tasks are not assigned and are completed by completing all sub-tasks only.
 - **One sub-task at a time:** Do **NOT** start the next sub‑task once this task is complete.
 - **Completion protocol:**
   1. When you finish a **sub‑task**, immediately mark it as completed by changing `[ ]` to `[x]`.
