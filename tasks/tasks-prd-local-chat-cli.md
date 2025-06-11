@@ -28,10 +28,10 @@
 - [x] 3.0 Build chat backend abstraction
   - [x] 3.1 Define `ChatBackend` trait in `chat_backend.rs`
   - [x] 3.2 Implement `OllamaBackend` using `async-openai`
-- [ ] 4.0 Create REPL loop and message handling
+- [x] 4.0 Create REPL loop and message handling
   - [x] 4.1 Prompt user until `/exit` or EOF
   - [x] 4.2 Maintain `Vec<Message>` with `role` and `content`
-  - [ ] 4.3 Stream responses as tokens arrive
+  - [x] 4.3 Stream responses as tokens arrive
 - [ ] 5.0 Support conversation persistence
   - [ ] 5.1 Autoload default transcript on startup
   - [ ] 5.2 Autosave conversation after each turn
