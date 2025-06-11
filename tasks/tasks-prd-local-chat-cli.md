@@ -26,7 +26,7 @@
   - [x] 2.1 Define flags `--new`, `--load`, and `--model` in `src/cli.rs`
   - [x] 2.2 Hook CLI parsing into `main.rs`
 - [ ] 3.0 Build chat backend abstraction
-  - [ ] 3.1 Define `ChatBackend` trait in `chat_backend.rs`
+  - [x] 3.1 Define `ChatBackend` trait in `chat_backend.rs`
   - [ ] 3.2 Implement `OllamaBackend` using `async-openai`
 - [ ] 4.0 Create REPL loop and message handling
   - [ ] 4.1 Prompt user until `/exit` or EOF
