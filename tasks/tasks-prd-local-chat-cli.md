@@ -17,9 +17,9 @@
 
 ## Tasks
 
-- [ ] 1.0 Initialize Rust project structure
-  - [ ] 1.1 Create `Cargo.toml` with necessary dependencies
-  - [ ] 1.2 Set up `src/main.rs` with async runtime entry point
+- [x] 1.0 Initialize Rust project structure
+  - [x] 1.1 Create `Cargo.toml` with necessary dependencies
+  - [x] 1.2 Set up `src/main.rs` with async runtime entry point
 - [ ] 2.0 Implement CLI argument parsing
   - [ ] 2.1 Define flags `--new`, `--load`, and `--model` in `src/cli.rs`
   - [ ] 2.2 Hook CLI parsing into `main.rs`
