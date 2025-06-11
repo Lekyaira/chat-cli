@@ -1,7 +1,7 @@
 use async_trait::async_trait;
 
 /// Represents a single chat message with a role and content.
-#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
+#[derive(Debug, Clone, serde::Serialize, serde::Deserialize, PartialEq)]
 pub struct Message {
     pub role: String,
     pub content: String,

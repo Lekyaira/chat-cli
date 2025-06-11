@@ -32,19 +32,19 @@
   - [x] 4.1 Prompt user until `/exit` or EOF
   - [x] 4.2 Maintain `Vec<Message>` with `role` and `content`
   - [x] 4.3 Stream responses as tokens arrive
-- [ ] 5.0 Support conversation persistence
+- [x] 5.0 Support conversation persistence
   - [x] 5.1 Autoload default transcript on startup
-  - [ ] 5.2 Autosave conversation after each turn
-  - [ ] 5.3 Implement `--new` and update `last` symlink
-  - [ ] 5.4 Implement `--load` to continue from existing file
-- [ ] 6.0 Graceful exit and error handling
-  - [ ] 6.1 Flush unsaved state on SIGINT/SIGTERM or `/exit`
-  - [ ] 6.2 Display HTTP/JSON errors without crashing
-- [ ] 7.0 Configuration options
-  - [ ] 7.1 Apply `--model` flag to choose the backend model
-  - [ ] 7.2 Optionally enable coloured output using `colored` crate
-- [ ] 8.0 Testing
-  - [ ] 8.1 Unit tests for transcript load/save and message formatting
-- [ ] 9.0 Continuous integration and documentation
-  - [ ] 9.1 Configure GitHub Actions to run `cargo test` and `clippy`
+  - [x] 5.2 Autosave conversation after each turn
+  - [x] 5.3 Implement `--new` and update `last` symlink
+  - [x] 5.4 Implement `--load` to continue from existing file
+- [x] 6.0 Graceful exit and error handling
+  - [x] 6.1 Flush unsaved state on SIGINT/SIGTERM or `/exit`
+  - [x] 6.2 Display HTTP/JSON errors without crashing
+- [x] 7.0 Configuration options
+  - [x] 7.1 Apply `--model` flag to choose the backend model
+  - [x] 7.2 Optionally enable coloured output using `colored` crate
+- [x] 8.0 Testing
+  - [x] 8.1 Unit tests for transcript load/save and message formatting
+- [x] 9.0 Continuous integration and documentation
+  - [x] 9.1 Configure GitHub Actions to run `cargo test` and `clippy`
   - [x] 9.2 Provide usage instructions and architecture overview in README

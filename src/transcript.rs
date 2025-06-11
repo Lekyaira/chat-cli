@@ -1,6 +1,6 @@
 use crate::chat_backend::Message;
-use std::fs::File;
-use std::io::{BufRead, BufReader};
+use std::fs::{File, OpenOptions};
+use std::io::{BufRead, BufReader, Write};
 use std::path::{Path, PathBuf};
 
 /// Return the default directory used for storing transcripts.
@@ -32,4 +32,29 @@ pub fn load_transcript(path: &Path) -> Result<Vec<Message>, Box<dyn std::error::
         messages.push(msg);
     }
     Ok(messages)
+}
+
+/// Append a single message to the transcript at `path` as JSONL.
+pub fn append_message(path: &Path, message: &Message) -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
+    let mut file = OpenOptions::new()
+        .create(true)
+        .append(true)
+        .open(path)?;
+    let line = serde_json::to_string(message)?;
+    writeln!(file, "{}", line)?;
+    Ok(())
+}
+
+/// Update the `last.jsonl` symlink to point to the provided transcript path.
+pub fn update_last_symlink(target: &Path) -> std::io::Result<()> {
+    if let Some(dir) = data_dir() {
+        std::fs::create_dir_all(&dir)?;
+        let link = dir.join("last.jsonl");
+        let _ = std::fs::remove_file(&link);
+        #[cfg(unix)]
+        std::os::unix::fs::symlink(target, &link)?;
+        #[cfg(windows)]
+        std::os::windows::fs::symlink_file(target, &link)?;
+    }
+    Ok(())
 }

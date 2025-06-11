@@ -12,7 +12,10 @@ in `src/ollama_backend.rs`:
 - `--new <FILE>` start a new conversation log.
 - `--load <FILE>` load an existing log.
 - `--model <NAME>` choose the model to use (default `mistral`).
-The CLI now sends each prompt to a locally running Ollama server and streams the assistant's reply token by token. If no `--new` or `--load` flag is supplied, it will automatically load the previous transcript from `~/.local/share/chat_cli/last.jsonl` (or `$XDG_DATA_HOME/chat_cli/last.jsonl`).
+- `--color` enable coloured assistant output.
+The CLI now sends each prompt to a locally running Ollama server and streams the assistant's reply token by token. If no `--new` or `--load` flag is supplied, it will automatically load the previous transcript from `~/.local/share/chat_cli/last.jsonl` (or `$XDG_DATA_HOME/chat_cli/last.jsonl`). After each user turn, the conversation is appended to the active transcript file so you can resume later.
+Using `--new` also updates the `last.jsonl` symlink in the data directory to point to the new file.
+Use `--load` with a transcript file to continue an earlier conversation.
 
 ## Building
 
@@ -37,7 +40,7 @@ cargo run -- --new mylog.jsonl --model mistral
 ```
 
 After launching, the program prompts for your input in a simple REPL loop.
-Type `/exit` or press `Ctrl-D` to quit.
+Type `/exit`, press `Ctrl-D`, or hit `Ctrl-C` to quit gracefully.
 
 Use `cargo run -- --help` to see all available options.
 

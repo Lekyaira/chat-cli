@@ -16,4 +16,8 @@ pub struct Cli {
     /// Override the default model name (default: mistral)
     #[arg(long, default_value = "mistral", value_name = "MODEL")]
     pub model: String,
+
+    /// Enable coloured output
+    #[arg(long)]
+    pub color: bool,
 }
