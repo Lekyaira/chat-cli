@@ -4,8 +4,16 @@
 
 - When asked to complete a task, or when asked to complete the next task, **ALWAYS** check `/tasks/process-task-list-codex.md` and follow that process.
 - When asked to work fully autonomously, use the following process:
-  1. Complete the next task, as if the user asked you to "Complete the next task", including running all tests and verifying recent changes.
-  2. Determine if any issues arose during the completion of the task that requires project manager input. Determine if project scope is unreasonably increasing, if tooling is not functioning properly, or if you are unable to understand how to complete the sub-task.
-     - If so, **STOP** and mark the task complete, then ask the user how to proceed.
-     - Unreasonable project scope creep is more than ~3 tasks and/or sub-tasks added in one task completion cycle.
-  3. If no issues were encountered and the project passes all tests, continue to step 1. and continue completing sub-tasks until all tasks are complete.
+  1. **Begin at the top of the task list and complete sub-tasks one by one in order, following all instructions in `/tasks/process-task-list-codex.md` unless otherwise directed here.**
+  2. **After each sub-task:**
+     - Mark the sub-task `[x]` and update any relevant documentation.
+     - If all subtasks under a parent are complete, mark the parent task `[x]`.
+     - Check for the following _stopping conditions_:
+       - Project is finished (no sub-tasks remaining).
+       - Any issues arise, including:
+         - Project scope increases by more than ~3 sub-tasks in a cycle,
+         - Tooling is not functioning properly,
+         - The agent is unable to figure out how to implement a sub-task,
+         - The user needs to make a decision or provide input.
+     - **If any stopping condition is met, STOP working and ask the user how to proceed.**
+  3. **If no stopping conditions are met, proceed to the next sub-task and repeat step 2.**
