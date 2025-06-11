@@ -3,6 +3,7 @@ mod chat_backend;
 mod ollama_backend;
 
 use clap::Parser;
+use std::io::{self, Write};
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -17,6 +18,23 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     }
 
     println!("Using model: {}", cli.model);
+
+    let stdin = io::stdin();
+    let mut input = String::new();
+
+    loop {
+        print!("> ");
+        io::stdout().flush()?;
+        input.clear();
+        if stdin.read_line(&mut input)? == 0 {
+            break;
+        }
+        let line = input.trim_end();
+        if line == "/exit" {
+            break;
+        }
+        println!("You said: {}", line);
+    }
 
     Ok(())
 }

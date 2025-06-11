@@ -37,6 +37,9 @@ Example:
 cargo run -- --new mylog.jsonl --model mistral
 ```
 
+After launching, the program prompts for your input in a simple REPL loop.
+Type `/exit` or press `Ctrl-D` to quit.
+
 Use `cargo run -- --help` to see all available options.
 
 ## Development
