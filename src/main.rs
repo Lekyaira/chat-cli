@@ -4,10 +4,16 @@ mod ollama_backend;
 
 use clap::Parser;
 use std::io::{self, Write};
+use chat_backend::{ChatBackend, Message};
+use ollama_backend::OllamaBackend;
 
 #[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
+async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
     let cli = cli::Cli::parse();
+
+    // Initialize the chat backend using the requested model
+    let backend = OllamaBackend::new(cli.model.clone());
+    let mut messages: Vec<Message> = Vec::new();
 
     if let Some(path) = cli.new.as_ref() {
         println!("Starting new conversation at {:?}", path);
@@ -33,7 +39,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         if line == "/exit" {
             break;
         }
-        println!("You said: {}", line);
+        messages.push(Message { role: "user".into(), content: line.to_string() });
+        let reply = backend.chat(&messages).await?;
+        println!("{}", reply);
+        messages.push(Message { role: "assistant".into(), content: reply });
     }
 
     Ok(())

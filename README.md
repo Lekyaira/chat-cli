@@ -12,8 +12,8 @@ in `src/ollama_backend.rs`:
 - `--new <FILE>` start a new conversation log.
 - `--load <FILE>` load an existing log.
 - `--model <NAME>` choose the model to use (default `mistral`).
-
-Future tasks will add the actual chat backend, streaming responses and transcript persistence.
+The CLI now sends each prompt to a locally running Ollama server and prints the assistant's reply.
+Future tasks will add streaming output and conversation persistence.
 
 ## Building
 
