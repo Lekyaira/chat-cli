@@ -11,21 +11,23 @@ use async_openai::{
 use futures_util::StreamExt;
 use std::io::{self, Write};
 use async_trait::async_trait;
+use colored::Colorize;
 
 /// Chat backend that talks to a locally running Ollama server via OpenAI-compatible API.
 pub struct OllamaBackend {
     client: Client<OpenAIConfig>,
     model: String,
+    color: bool,
 }
 
 impl OllamaBackend {
     /// Create a new backend targeting the given model.
-    pub fn new(model: impl Into<String>) -> Self {
+    pub fn new(model: impl Into<String>, color: bool) -> Self {
         let config = OpenAIConfig::new()
             .with_api_base("http://localhost:11434/v1")
             .with_api_key("none");
         let client = Client::with_config(config);
-        Self { client, model: model.into() }
+        Self { client, model: model.into(), color }
     }
 }
 
@@ -69,7 +71,11 @@ impl ChatBackend for OllamaBackend {
                 .first()
                 .and_then(|c| c.delta.content.clone())
             {
-                print!("{}", content);
+                if self.color {
+                    print!("{}", content.green());
+                } else {
+                    print!("{}", content);
+                }
                 io::stdout().flush()?;
                 reply.push_str(&content);
             }
