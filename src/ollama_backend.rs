@@ -24,7 +24,7 @@ impl OllamaBackend {
     /// Create a new backend targeting the given model.
     pub fn new(model: impl Into<String>, color: bool) -> Self {
         let config = OpenAIConfig::new()
-            .with_api_base("http://localhost:11434/v1")
+            .with_api_base("http://media:11434/v1")
             .with_api_key("none");
         let client = Client::with_config(config);
         Self { client, model: model.into(), color }
